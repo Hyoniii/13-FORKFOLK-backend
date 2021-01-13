@@ -52,45 +52,6 @@ class ShopAllView(View):
                 return JsonResponse({"page_products":page_list}, status=201)
             else:
                 return JsonResponse({"message":"Not Found URL"},status=400)
-#            category_list = []
-#            category_name = request.GET.get("category",None)
-#
-#            if request.GET.get("page"):
-#                page_num = int(request.GET.get("page"))
-#
-#            if category_name == "All":
-#                products = Product.objects.all()
-#
-#                product_list = [{
-#                    "id"       : product.id,
-#                    "name"     : product.name,
-#                    "category" : ShopCategory.objects.get(id=product.category_id).name,
-#                    "price"    : product.price,
-#                    "image"    : ProductImage.objects.filter(product_id=product.id).values('image_url')[0].get("image_url")} for product in products]
-#
-#                random.shuffle(product_list)
-#                page      = page_num
-#                page_size = 12
-#                limit     = page * page_size
-#                offset    = limit - page_size
-#                page_list = product_list[offset:limit]
-#
-#                if not page_list:
-#                    return JsonResponse({"massage":"PAGE_ERROR"}, status=409)
-#
-#                return JsonResponse({"page_products":page_list}, status=201)
-#
-#            else:
-#                category_id   = ShopCategory.objects.get(name=category_name)
-#                products = Product.objects.filter(category_id=category_id)
-#                product_list = [{
-#                    "id"       : product.id,
-#                    "name"     : product.name,
-#                    "category" : ShopCategory.objects.get(id=product.category_id).name,
-#                    "price"    : product.price,
-#                    "image"    : ProductImage.objects.filter(product_id=product.id).values('image_url')[0].get("image_url")} for product in products]
-#
-#                return JsonResponse({"category_products":product_list},status=201)
         except KeyError:
             return JsonResponse({'message':'KEY_ERROR'},status=409)
         except ValueError:

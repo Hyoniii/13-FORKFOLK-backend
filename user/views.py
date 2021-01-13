@@ -38,8 +38,8 @@ class SignUpView(View):
             return JsonResponse({'message': 'KEY_ERROR'}, status=400)
         except ValueError:
             return JsonResponse({'message':'VALUE_ERROR'},status=400)
-        except:
-            return jsonResponse({'dd':'dd'},status=400)
+        except Excetion as e:
+            return jsonResponse({'message':e},status=400)
 
 class SignInView(View):
     def post(self,request):
